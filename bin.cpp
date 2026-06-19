@@ -1,35 +1,48 @@
 #include <iostream>
 using namespace std;
 
-int binarySearch(int arr[], int n, int target) {
-    int left = 0, right = n - 1;
+int main() {
+    int n, target;
+    cout << "Enter Size of the array : ";
+    cin >> n;
 
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
+    int arr[n];
 
-        if (arr[mid] == target)
-            return mid;
-
-        if (arr[mid] < target)
-            left = mid + 1;
-        else
-            right = mid - 1;
+    cout << "Enter array elements => ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
 
-    return -1;
-}
+    cout << "Array => ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
 
-int main() {
-    int arr[] = {10, 20, 30, 40, 50, 60, 70};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int target = 50;
+    cout << "\nEnter target value : ";
+    cin >> target;
 
-    int result = binarySearch(arr, n, target);
+    int low = 0, high = n - 1;
+    bool found = false;
 
-    if (result != -1)
-        cout << "Element found at index " << result << endl;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == target) {
+            found = true;
+            break;
+        }
+        else if (arr[mid] < target) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+
+    if (found)
+        cout << "Element found !";
     else
-        cout << "Element not found" << endl;
+        cout << "Element not found";
 
     return 0;
 }
